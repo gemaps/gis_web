@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        #map {
+            width: 1382px;
+            height: 834px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/admin_level6_0.js"></script>
+        <script src="data/admin_level9_1.js"></script>
+        <script src="data/region_2.js"></script>
+        <script src="data/s_hydro_3.js"></script>
+        <script src="data/line_hydro_4.js"></script>
+        <script src="data/road_5.js"></script>
+        <script src="data/road_main_6.js"></script>
+        <script src="data/building_7.js"></script>
+        <script src="data/rail_8.js"></script>
+        <script src="data/bus_9.js"></script>
+        <script src="data/poi_10.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        function pop_admin_level6_0(feature, layer) {
+        }
+        function style_admin_level6_0_0(feature) {
+            var context = {
+                feature: feature,
+                variables: {}
+            };
+            // Start of if blocks and style check logic
+            if (exp_admin_level6_0rule0_eval_expression(context)) {
+                  return {
+                pane: 'pane_admin_level6_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(152,125,183,1.0)',
+                interactive: false,
+            };
+                }
+            else {
+                return {fill: false, stroke: false};
+            }
+        }
+        map.createPane('pane_admin_level6_0');
+        map.getPane('pane_admin_level6_0').style.zIndex = 400;
+        map.getPane('pane_admin_level6_0').style['mix-blend-mode'] = 'normal';
+        var layer_admin_level6_0 = new L.geoJson(json_admin_level6_0, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_admin_level6_0',
+            layerName: 'layer_admin_level6_0',
+            pane: 'pane_admin_level6_0',
+            onEachFeature: pop_admin_level6_0,
+            style: style_admin_level6_0_0,
+        });
+        bounds_group.addLayer(layer_admin_level6_0);
+        map.addLayer(layer_admin_level6_0);
+        function pop_admin_level9_1(feature, layer) {
+        }
+
+        function style_admin_level9_1_0(feature) {
+            switch(String(feature.properties['q2wHide_admin_leve'])) {
+                case '9':
+                    return {
+                pane: 'pane_admin_level9_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(206,96,98,1.0)',
+                interactive: false,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_admin_level9_1');
+        map.getPane('pane_admin_level9_1').style.zIndex = 401;
+        map.getPane('pane_admin_level9_1').style['mix-blend-mode'] = 'normal';
+        var layer_admin_level9_1 = new L.geoJson(json_admin_level9_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_admin_level9_1',
+            layerName: 'layer_admin_level9_1',
+            pane: 'pane_admin_level9_1',
+            onEachFeature: pop_admin_level9_1,
+            style: style_admin_level9_1_0,
+        });
+        bounds_group.addLayer(layer_admin_level9_1);
+        map.addLayer(layer_admin_level9_1);
+        function pop_region_2(feature, layer) {
+        }
+
+        function style_region_2_0(feature) {
+            switch(String(feature.properties['q2wHide_code'])) {
+                case '81':
+                    return {
+                pane: 'pane_region_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(217,225,245,1.0)',
+                interactive: false,
+            }
+                    break;
+                case '82':
+                    return {
+                pane: 'pane_region_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(172,172,172,1.0)',
+                interactive: false,
+            }
+                    break;
+                case '84':
+                    return {
+                pane: 'pane_region_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(62,223,40,1.0)',
+                interactive: false,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_region_2');
+        map.getPane('pane_region_2').style.zIndex = 402;
+        map.getPane('pane_region_2').style['mix-blend-mode'] = 'normal';
+        var layer_region_2 = new L.geoJson(json_region_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_region_2',
+            layerName: 'layer_region_2',
+            pane: 'pane_region_2',
+            onEachFeature: pop_region_2,
+            style: style_region_2_0,
+        });
+        bounds_group.addLayer(layer_region_2);
+        map.addLayer(layer_region_2);
+        function pop_s_hydro_3(feature, layer) {
+        }
+
+        function style_s_hydro_3_0() {
+            return {
+                pane: 'pane_s_hydro_3',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(90,154,227,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_s_hydro_3');
+        map.getPane('pane_s_hydro_3').style.zIndex = 403;
+        map.getPane('pane_s_hydro_3').style['mix-blend-mode'] = 'normal';
+        var layer_s_hydro_3 = new L.geoJson(json_s_hydro_3, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_s_hydro_3',
+            layerName: 'layer_s_hydro_3',
+            pane: 'pane_s_hydro_3',
+            onEachFeature: pop_s_hydro_3,
+            style: style_s_hydro_3_0,
+        });
+        bounds_group.addLayer(layer_s_hydro_3);
+        map.addLayer(layer_s_hydro_3);
+        function pop_line_hydro_4(feature, layer) {
+        }
+
+        function style_line_hydro_4_0() {
+            return {
+                pane: 'pane_line_hydro_4',
+                opacity: 1,
+                color: 'rgba(90,154,227,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_line_hydro_4');
+        map.getPane('pane_line_hydro_4').style.zIndex = 404;
+        map.getPane('pane_line_hydro_4').style['mix-blend-mode'] = 'normal';
+        var layer_line_hydro_4 = new L.geoJson(json_line_hydro_4, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_line_hydro_4',
+            layerName: 'layer_line_hydro_4',
+            pane: 'pane_line_hydro_4',
+            onEachFeature: pop_line_hydro_4,
+            style: style_line_hydro_4_0,
+        });
+        bounds_group.addLayer(layer_line_hydro_4);
+        map.addLayer(layer_line_hydro_4);
+        function pop_road_5(feature, layer) {
+        }
+
+        function style_road_5_0() {
+            return {
+                pane: 'pane_road_5',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'round',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        function style_road_5_1() {
+            return {
+                pane: 'pane_road_5',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_road_5');
+        map.getPane('pane_road_5').style.zIndex = 405;
+        map.getPane('pane_road_5').style['mix-blend-mode'] = 'normal';
+        var layer_road_5 = new L.geoJson.multiStyle(json_road_5, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_road_5',
+            layerName: 'layer_road_5',
+            pane: 'pane_road_5',
+            onEachFeature: pop_road_5,
+            styles: [style_road_5_0,style_road_5_1,]
+        });
+        bounds_group.addLayer(layer_road_5);
+        map.addLayer(layer_road_5);
+        function pop_road_main_6(feature, layer) {
+        }
+
+        function style_road_main_6_0() {
+            return {
+                pane: 'pane_road_main_6',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'round',
+                weight: 7.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        function style_road_main_6_1() {
+            return {
+                pane: 'pane_road_main_6',
+                opacity: 1,
+                color: 'rgba(255,96,17,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'round',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_road_main_6');
+        map.getPane('pane_road_main_6').style.zIndex = 406;
+        map.getPane('pane_road_main_6').style['mix-blend-mode'] = 'normal';
+        var layer_road_main_6 = new L.geoJson.multiStyle(json_road_main_6, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_road_main_6',
+            layerName: 'layer_road_main_6',
+            pane: 'pane_road_main_6',
+            onEachFeature: pop_road_main_6,
+            styles: [style_road_main_6_0,style_road_main_6_1,]
+        });
+        bounds_group.addLayer(layer_road_main_6);
+        map.addLayer(layer_road_main_6);
+        function pop_building_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['addr_house'] !== null ? autolinker.link(feature.properties['addr_house'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_building_7_0(feature) {
+            switch(String(feature.properties['q2wHide_code'])) {
+                case '41':
+                    return {
+                pane: 'pane_building_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(243,166,178,1.0)',
+                interactive: false,
+            }
+                    break;
+                case '42':
+                    return {
+                pane: 'pane_building_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(125,166,137,1.0)',
+                interactive: false,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_building_7');
+        map.getPane('pane_building_7').style.zIndex = 407;
+        map.getPane('pane_building_7').style['mix-blend-mode'] = 'normal';
+        var layer_building_7 = new L.geoJson(json_building_7, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_building_7',
+            layerName: 'layer_building_7',
+            pane: 'pane_building_7',
+            onEachFeature: pop_building_7,
+            style: style_building_7_0,
+        });
+        bounds_group.addLayer(layer_building_7);
+        map.addLayer(layer_building_7);
+        function pop_rail_8(feature, layer) {
+        }
+
+        function style_rail_8_0(feature) {
+            switch(String(feature.properties['q2wHide_code'])) {
+                case '62':
+                    return {
+                pane: 'pane_rail_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_rail_8');
+        map.getPane('pane_rail_8').style.zIndex = 408;
+        map.getPane('pane_rail_8').style['mix-blend-mode'] = 'normal';
+        var layer_rail_8 = new L.geoJson(json_rail_8, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_rail_8',
+            layerName: 'layer_rail_8',
+            pane: 'pane_rail_8',
+            onEachFeature: pop_rail_8,
+            style: style_rail_8_0,
+        });
+        bounds_group.addLayer(layer_rail_8);
+        map.addLayer(layer_rail_8);
+        function pop_bus_9(feature, layer) {
+        }
+        function style_bus_9_0(feature) {
+            var context = {
+                feature: feature,
+                variables: {}
+            };
+            // Start of if blocks and style check logic
+            if (exp_bus_9rule0_eval_expression(context)) {
+                  return {
+                pane: 'pane_bus_9',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/transport_bus_stop.svg',
+            iconSize: [13.68, 13.68]
+        }),
+                interactive: false,
+            };
+                }
+            else {
+                return {fill: false, stroke: false};
+            }
+        }
+        map.createPane('pane_bus_9');
+        map.getPane('pane_bus_9').style.zIndex = 409;
+        map.getPane('pane_bus_9').style['mix-blend-mode'] = 'normal';
+        var layer_bus_9 = new L.geoJson(json_bus_9, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_bus_9',
+            layerName: 'layer_bus_9',
+            pane: 'pane_bus_9',
+            onEachFeature: pop_bus_9,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_bus_9_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_bus_9);
+        map.addLayer(layer_bus_9);
+        function pop_poi_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">CodePOI</th>\
+                        <td>' + (feature.properties['CodePOI'] !== null ? autolinker.link(feature.properties['CodePOI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Название</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+        function style_poi_10_0(feature) {
+            var context = {
+                feature: feature,
+                variables: {}
+            };
+            // Start of if blocks and style check logic
+            if (exp_poi_10rule0_eval_expression(context)) {
+                  return {
+                pane: 'pane_poi_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ђҐбгаб 377.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            };
+                }
+                else if (exp_poi_10rule1_eval_expression(context)) {
+                  return {
+                pane: 'pane_poi_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ ­Š.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            };
+                }
+                else if (exp_poi_10rule2_eval_expression(context)) {
+                  return {
+                pane: 'pane_poi_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ђҐбгаб 300.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            };
+                }
+                else if (exp_poi_10rule3_eval_expression(context)) {
+                  return {
+                pane: 'pane_poi_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ђҐбгаб 7.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            };
+                }
+                else if (exp_poi_10rule4_eval_expression(context)) {
+                  return {
+                pane: 'pane_poi_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ђҐбгаб 10.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            };
+                }
+                else if (exp_poi_10rule5_eval_expression(context)) {
+                  return {
+                pane: 'pane_poi_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ђҐбгаб 11.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            };
+                }
+                else if (exp_poi_10rule6_eval_expression(context)) {
+                  return {
+                pane: 'pane_poi_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ђҐбгаб 8.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            };
+                }
+                else if (exp_poi_10rule7_eval_expression(context)) {
+                  return {
+                pane: 'pane_poi_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ђҐбгаб 5.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            };
+                }
+                else if (exp_poi_10rule8_eval_expression(context)) {
+                  return {
+                pane: 'pane_poi_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ђҐбгаб 3.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            };
+                }
+                else if (exp_poi_10rule9_eval_expression(context)) {
+                  return {
+                pane: 'pane_poi_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ђҐбгаб 3.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            };
+                }
+                else if (exp_poi_10rule10_eval_expression(context)) {
+                  return {
+                pane: 'pane_poi_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ђҐбгаб 6.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            };
+                }
+                else if (exp_poi_10rule11_eval_expression(context)) {
+                  return {
+                pane: 'pane_poi_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ђҐбгаб 4.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            };
+                }
+            else {
+                return {fill: false, stroke: false};
+            }
+        }
+        map.createPane('pane_poi_10');
+        map.getPane('pane_poi_10').style.zIndex = 410;
+        map.getPane('pane_poi_10').style['mix-blend-mode'] = 'normal';
+        var layer_poi_10 = new L.geoJson(json_poi_10, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_poi_10',
+            layerName: 'layer_poi_10',
+            pane: 'pane_poi_10',
+            onEachFeature: pop_poi_10,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_poi_10_0(feature));
+            },
+        });
+        var cluster_poi_10 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_poi_10.addLayer(layer_poi_10);
+
+        bounds_group.addLayer(layer_poi_10);
+        cluster_poi_10.addTo(map);
+        map.on("zoomend", function(e) {
+            if (map.getZoom() <= 13 && map.getZoom() >= 2) {
+                map.addLayer(layer_admin_level6_0);
+            } else if (map.getZoom() > 13 || map.getZoom() < 2) {
+                map.removeLayer(layer_admin_level6_0);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 9) {
+                map.addLayer(layer_region_2);
+            } else if (map.getZoom() > 19 || map.getZoom() < 9) {
+                map.removeLayer(layer_region_2);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_s_hydro_3);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_s_hydro_3);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_line_hydro_4);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_line_hydro_4);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 13) {
+                map.addLayer(layer_building_7);
+            } else if (map.getZoom() > 19 || map.getZoom() < 13) {
+                map.removeLayer(layer_building_7);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 12) {
+                map.addLayer(layer_rail_8);
+            } else if (map.getZoom() > 19 || map.getZoom() < 12) {
+                map.removeLayer(layer_rail_8);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_bus_9);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_bus_9);
+            }
+        });
+            if (map.getZoom() <= 13 && map.getZoom() >= 2) {
+                map.addLayer(layer_admin_level6_0);
+            } else if (map.getZoom() > 13 || map.getZoom() < 2) {
+                map.removeLayer(layer_admin_level6_0);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 9) {
+                map.addLayer(layer_region_2);
+            } else if (map.getZoom() > 19 || map.getZoom() < 9) {
+                map.removeLayer(layer_region_2);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_s_hydro_3);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_s_hydro_3);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_line_hydro_4);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_line_hydro_4);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 13) {
+                map.addLayer(layer_building_7);
+            } else if (map.getZoom() > 19 || map.getZoom() < 13) {
+                map.removeLayer(layer_building_7);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 12) {
+                map.addLayer(layer_rail_8);
+            } else if (map.getZoom() > 19 || map.getZoom() < 12) {
+                map.removeLayer(layer_rail_8);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
+                map.addLayer(layer_bus_9);
+            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
+                map.removeLayer(layer_bus_9);
+            }
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'poi<br /><table><tr><td style="text-align: center;"><img src="legend/poi_10_Аптеки0.png" /></td><td>Аптеки</td></tr><tr><td style="text-align: center;"><img src="legend/poi_10_Банк1.png" /></td><td>Банк</td></tr><tr><td style="text-align: center;"><img src="legend/poi_10_Диспансеры2.png" /></td><td>Диспансеры</td></tr><tr><td style="text-align: center;"><img src="legend/poi_10_Завод3.png" /></td><td>Завод</td></tr><tr><td style="text-align: center;"><img src="legend/poi_10_Пожар4.png" /></td><td>Пожар</td></tr><tr><td style="text-align: center;"><img src="legend/poi_10_Полиция5.png" /></td><td>Полиция</td></tr><tr><td style="text-align: center;"><img src="legend/poi_10_Почта6.png" /></td><td>Почта</td></tr><tr><td style="text-align: center;"><img src="legend/poi_10_Сад7.png" /></td><td>Сад</td></tr><tr><td style="text-align: center;"><img src="legend/poi_10_Стоматология8.png" /></td><td>Стоматология</td></tr><tr><td style="text-align: center;"><img src="legend/poi_10_12Bstom9.png" /></td><td>12B stom</td></tr><tr><td style="text-align: center;"><img src="legend/poi_10_Творчество10.png" /></td><td>Творчество</td></tr><tr><td style="text-align: center;"><img src="legend/poi_10_Школа11.png" /></td><td>Школа</td></tr></table>': cluster_poi_10,'bus<br /><table><tr><td style="text-align: center;"><img src="legend/bus_9_0.png" /></td><td></td></tr></table>': layer_bus_9,'rail<br /><table><tr><td style="text-align: center;"><img src="legend/rail_8_620.png" /></td><td>62</td></tr></table>': layer_rail_8,'building<br /><table><tr><td style="text-align: center;"><img src="legend/building_7_410.png" /></td><td>41</td></tr><tr><td style="text-align: center;"><img src="legend/building_7_421.png" /></td><td>42</td></tr></table>': layer_building_7,'<img src="legend/road_main_6.png" /> road_main': layer_road_main_6,'<img src="legend/road_5.png" /> road': layer_road_5,'<img src="legend/line_hydro_4.png" /> line_hydro': layer_line_hydro_4,'<img src="legend/s_hydro_3.png" /> s_hydro': layer_s_hydro_3,'region<br /><table><tr><td style="text-align: center;"><img src="legend/region_2_810.png" /></td><td>81</td></tr><tr><td style="text-align: center;"><img src="legend/region_2_821.png" /></td><td>82</td></tr><tr><td style="text-align: center;"><img src="legend/region_2_842.png" /></td><td>84</td></tr></table>': layer_region_2,'admin_level9<br /><table><tr><td style="text-align: center;"><img src="legend/admin_level9_1_90.png" /></td><td>9</td></tr></table>': layer_admin_level9_1,'admin_level6<br /><table><tr><td style="text-align: center;"><img src="legend/admin_level6_0_0.png" /></td><td></td></tr></table>': layer_admin_level6_0,}).addTo(map);
+        map.on("zoomend", function(){
+
+                if (map.hasLayer(layer_building_7)) {
+                    if (map.getZoom() <= 14 && map.getZoom() >= 18) {
+                        layer_building_7.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_building_7.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+                if (map.hasLayer(layer_poi_10)) {
+                    if (map.getZoom() <= 19 && map.getZoom() >= 19) {
+                        layer_poi_10.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_poi_10.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+        });
+        setBounds();
+        var i = 0;
+        layer_admin_level9_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['q2wHide_name'] !== null?String('<div style="color: #ffffff; font-size: 10pt; font-weight: bold; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['q2wHide_name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_admin_level9_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_road_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['q2wHide_name'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Helvetica\', sans-serif;">' + layer.feature.properties['q2wHide_name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_road_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_road_main_6.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['q2wHide_name'] !== null?String('<div style="color: #ffffff; font-size: 10pt; font-weight: bold; font-family: \'Helvetica\', sans-serif;">' + layer.feature.properties['q2wHide_name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_road_main_6'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_building_7.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['addr_house'] !== null?String('<div style="color: #000000; font-size: 7pt; font-family: \'Minion Pro\', sans-serif;">' + layer.feature.properties['addr_house']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_building_7'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_poi_10.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Name'] !== null?String('<div style="color: #000000; font-size: 10pt; font-weight: bold; font-family: \'Minion Pro\', sans-serif;">' + layer.feature.properties['Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_poi_10'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+                if (map.hasLayer(layer_building_7)) {
+                    if (map.getZoom() <= 14 && map.getZoom() >= 18) {
+                        layer_building_7.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_building_7.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+                if (map.hasLayer(layer_poi_10)) {
+                    if (map.getZoom() <= 19 && map.getZoom() >= 19) {
+                        layer_poi_10.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_poi_10.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+        map.addControl(new L.Control.Search({
+            layer: cluster_poi_10,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'Name'}));
+        document.getElementsByClassName('search-button')[0].className +=
+         ' fa fa-binoculars';
+        resetLabels([layer_admin_level9_1,layer_road_5,layer_road_main_6,layer_building_7,layer_poi_10]);
+        map.on("zoomend", function(){
+            resetLabels([layer_admin_level9_1,layer_road_5,layer_road_main_6,layer_building_7,layer_poi_10]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_admin_level9_1,layer_road_5,layer_road_main_6,layer_building_7,layer_poi_10]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_admin_level9_1,layer_road_5,layer_road_main_6,layer_building_7,layer_poi_10]);
+        });
+        </script>
+    </body>
+</html>
